@@ -1,9 +1,8 @@
 {
-    "routes": [
-      {
-        "route": "/api/*",
-        "redirect": "https://maxflow.ai/api/abc"
-      }
-    ]
-  }
-  
+  "routes": [
+    {
+      "route": "/api/*",
+      "rewrite": "https://maxflow.ai/api/*"
+    }
+  ]
+}
