@@ -1,0 +1,9 @@
+{
+    "routes": [
+      {
+        "route": "/api/*",
+        "rewrite": "https://maxflow.ai/api/*"
+      }
+    ]
+  }
+  
