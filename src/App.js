@@ -1,25 +1,36 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import './App.css';
 
 function App() {
-  const [randomNumber, setRandomNumber] = useState(null);
+  const [number, setNumber] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const fetchRandomNumber = async () => {
+  const fetchNumber = async () => {
+    setLoading(true);
+    setError(null);
     try {
-      const response = await axios.get(`${API_URL}/api/random-number`); // Sử dụng biến môi trường
-      setRandomNumber(response.data.random_number);
-    } catch (error) {
-      console.error('Error fetching random number:', error);
+      const response = await fetch('/api/random-number');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setNumber(data.number);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="App">
-      <h1>Random Number</h1>
-      <button onClick={fetchRandomNumber}>Fetch Random Number</button>
-      {randomNumber !== null && <p>Random Number: {randomNumber}</p>}
+      <h1>React App</h1>
+      <button onClick={fetchNumber} disabled={loading}>
+        {loading ? 'Loading...' : 'Get Random Number'}
+      </button>
+      {error && <p>Error: {error}</p>}
+      {number !== null && <p>Random Number: {number}</p>}
     </div>
   );
 }
