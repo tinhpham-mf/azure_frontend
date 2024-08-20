@@ -2,7 +2,7 @@
     "routes": [
       {
         "route": "/api/*",
-        "rewrite": "https://maxflow.ai/api/*"
+        "redirect": "https://maxflow.ai/api/abc"
       }
     ]
   }
