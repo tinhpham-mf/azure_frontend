@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "route": "/api/*",
-      "rewrite": "https://testwebapp1-hjg8ephva4fxfcf8.eastus2-01.azurewebsites.net/api/*"
-    }
-  ]
-}

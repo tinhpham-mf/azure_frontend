@@ -10,7 +10,7 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/random-number');
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/random-number`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
