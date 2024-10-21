@@ -1,36 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [number, setNumber] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const fetchNumber = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/random-number`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setNumber(data.number);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="App">
-      <h1>React App</h1>
-      <button onClick={fetchNumber} disabled={loading}>
-        {loading ? 'Loading...' : 'Get Random Number'}
-      </button>
-      {error && <p>Error: {error}</p>}
-      {number !== null && <p>Random Number: {number}</p>}
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
